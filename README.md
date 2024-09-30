@@ -6,17 +6,18 @@ Ce projet met en place un data pipeline de traitement de données en Python pour
 Les étapes du projet incluent :
 1. **Data cleansing** : 
 Dans cette étape de cleansing , l'idée est d'appliquer un ensemble de traitement pour nettoyer et uniformiser la donnée :
-    1.1 Uniformisation du format des dates : les dates dans les fichiers ont plusieurs format différents ( 01/01/2019 , 2020-01-01 , "1 January 2020" ) donc il faut uniformiser le format pour pouvoir les traiter.
-    1.2 Gestion du mauvais encodage : exemple "Journal of emergency nursing\xc3\x28".
-    1.3 Suppression des espaces non nécéssaires.
-    1.4 Autres traitements possibles (non appliqués dans cet exercice): Gestion des valeurs nulles , gestion des doublons , gestion des caractères spéciaux.
+    **1.1** Uniformisation du format des dates : les dates dans les fichiers ont plusieurs format différents ( 01/01/2019 , 2020-01-01 , "1 January 2020" ) donc il faut uniformiser le format pour pouvoir les traiter.
+    **1.2** Gestion du mauvais encodage : exemple "Journal of emergency nursing\xc3\x28".
+    **1.3** Suppression des espaces non nécéssaires.
+    **1.4** Autres traitements possibles (non appliqués dans cet exercice): Gestion des valeurs nulles , gestion des doublons , gestion des caractères spéciaux.
 2. **Data pipeline** : 
 Création d'un graphe qui lie chaque médicament à ses mentions dans les différents journaux avec les dates et types de publication.
 3. **Traitement ad-hoc** : 
 Trouver le journal avec le plus de mentions de médicaments et les médicaments mentionnés dans les mêmes journaux PubMed.
 
-## Organisation des fichiers
+## Organisation du projet
 
+Le dossier **data** contient les fichiers de données JSON et CSV et le dossier **tests** contient les tests unitaires.
 - **`cleaning.py`** : Contient les fonctions de cleansing citées dans la partie précédente.
 - **`data_pipeline.py`** : Contient la partie de la génération du graphe de mentions.
 - **`adhoc_processing.py`** : Contient la partie des traitements ad-hoc.
