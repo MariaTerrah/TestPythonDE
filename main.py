@@ -9,15 +9,15 @@ def main():
     print("Starting the data processing pipeline...")
 
     # Charger les fichiers de données
-    drugs_df = pd.read_csv('drugs.csv')
-    clinical_trials_df = pd.read_csv('clinical_trials.csv', encoding='utf-8')
-    pubmed_csv_df = pd.read_csv('pubmed.csv')
+    drugs_df = pd.read_csv('data/drugs.csv')
+    clinical_trials_df = pd.read_csv('data/clinical_trials.csv', encoding='utf-8')
+    pubmed_csv_df = pd.read_csv('data/pubmed.csv')
     
-    with open('pubmed.json', 'r') as f:
+    with open('data/pubmed.json', 'r') as f:
         pubmed_json_df = pd.DataFrame(json.load(f))
 
     # Data cleansing
-    
+
     clinical_trials_df = format_date(clinical_trials_df, 'date')
     pubmed_csv_df = format_date(pubmed_csv_df, 'date')
     pubmed_json_df = format_date(pubmed_json_df, 'date')
