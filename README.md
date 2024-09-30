@@ -1,4 +1,4 @@
-# Data Processing Pipeline
+# Python et Data Engineering
 
 ## Description
 Ce projet met en place un data pipeline de traitement de données en Python pour nettoyer, transformer et analyser des mentions de médicaments dans des publications scientifiques et des essais cliniques. Le projet est structuré en plusieurs fichiers Python détaillés dans les parties ci-dessous.
