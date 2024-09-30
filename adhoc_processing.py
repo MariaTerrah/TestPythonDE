@@ -1,8 +1,7 @@
-# adhoc_processing.py
+
 
 # Fonction pour trouver le journal qui mentionne le plus de médicaments
 def journal_with_most_drug_mentions(mentions_graph):
-    print("Finding journal with most drug mentions")
     journal_dict = {}
     for drug, mentions in mentions_graph.items():
         for mention in mentions:
@@ -16,7 +15,6 @@ def journal_with_most_drug_mentions(mentions_graph):
 
 # Fonction pour trouver les autres médicaments mentionnés dans les mêmes journaux PubMed mais pas dans Clinical Trials
 def drugs_in_same_pubmed_journals(drug, mentions_graph):
-    print(f"Finding drugs in same PubMed journals as {drug}")
     pubmed_journals = set()
     if drug in mentions_graph:
         for mention in mentions_graph[drug]:

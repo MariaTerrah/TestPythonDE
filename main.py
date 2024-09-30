@@ -1,7 +1,7 @@
-# main.py
+
 import pandas as pd
 import json
-from cleaning import format_date, clean_text_columns, clean_text_column
+from cleaning import format_date, clean_encoding, clean_spaces
 from data_pipeline import get_mentions_graph, load_mentions_graph
 from adhoc_processing import journal_with_most_drug_mentions, drugs_in_same_pubmed_journals
 
@@ -16,28 +16,29 @@ def main():
     with open('pubmed.json', 'r') as f:
         pubmed_json_df = pd.DataFrame(json.load(f))
 
-    # Nettoyer et traiter les données
+    # Data cleansing
+    
     clinical_trials_df = format_date(clinical_trials_df, 'date')
     pubmed_csv_df = format_date(pubmed_csv_df, 'date')
     pubmed_json_df = format_date(pubmed_json_df, 'date')
     
-    clinical_trials_df = clean_text_columns(clinical_trials_df)
-    pubmed_csv_df = clean_text_columns(pubmed_csv_df)
-    pubmed_json_df = clean_text_columns(pubmed_json_df)
+    clinical_trials_df = clean_encoding(clinical_trials_df)
+    pubmed_csv_df = clean_encoding(pubmed_csv_df)
+    pubmed_json_df = clean_encoding(pubmed_json_df)
     
-    clinical_trials_df['scientific_title'] = clean_text_column(clinical_trials_df['scientific_title'])
-    pubmed_csv_df['title'] = clean_text_column(pubmed_csv_df['title'])
-    pubmed_json_df['title'] = clean_text_column(pubmed_json_df['title'])
-    drugs_df['drug'] = clean_text_column(drugs_df['drug'])
+    clinical_trials_df = clean_spaces(clinical_trials_df)
+    pubmed_csv_df = clean_spaces(pubmed_csv_df)
+    pubmed_json_df = clean_spaces(pubmed_json_df)
+    drugs_df = clean_spaces(drugs_df)
 
-    # Générer le graphe des mentions et sauvegarder dans un fichier JSON
+    # Graphe de mentions
     drug_names = drugs_df['drug'].tolist()
     df_list = [clinical_trials_df, pubmed_csv_df, pubmed_json_df]
     titles = ['scientific_title', 'title', 'title']
     sources = ['ClinicalTrials', 'PubMed', 'PubMed']
     get_mentions_graph(df_list, titles, drug_names, sources, 'mentions_graph_output.json')
 
-    # Charger le graphe des mentions et trouver le journal avec le plus de mentions de médicaments
+    # Le journal avec le plus de mentions de médicaments
     mentions_graph = load_mentions_graph('mentions_graph_output.json')
     journal, count = journal_with_most_drug_mentions(mentions_graph)
     print(f"Le journal qui mentionne le plus de médicaments est : {journal} avec {count} médicaments mentionnés.")
