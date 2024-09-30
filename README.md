@@ -32,9 +32,17 @@ pip3 install -r requirements.txt
 
 python3 main.py
 
+Résultat de l'exécution ci dessous: 
+<img width="1061" alt="image" src="https://github.com/user-attachments/assets/b2f53e03-e11b-4f2f-90cc-96e577db4e87">
+
+
 ## Exécution des tests unitaires
 
 python3 -m unittest discover -s tests
+
+Résultat de l'exécution des tests ci-dessous;
+<img width="1061" alt="image" src="https://github.com/user-attachments/assets/2875c548-8899-4d28-8dde-dd75198cfa96">
+
 
 ## Pour aller plus loin 
 
